@@ -1,5 +1,8 @@
 # cyber-expert-llm
 
+[![ci](https://github.com/Cyhelm-Vciso/LLM/actions/workflows/ci.yml/badge.svg)](https://github.com/Cyhelm-Vciso/LLM/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Build datasets, fine-tune, and evaluate AI models that think like a CISO, a cybersecurity expert, and a cybersecurity engineer.**
 
 Works with any open model on Hugging Face (Llama, Qwen, Mistral, Gemma, Phi, and others) and exports chat JSONL that most fine-tuning tools and hosted services accept. It also ships three ready-to-use **Claude Skills**, so you can get the personas in Claude without training anything.
@@ -39,7 +42,7 @@ tests/                 pytest suite (no GPU or API key needed)
 ## Quickstart
 
 ```bash
-git clone https://github.com/<you>/cyber-expert-llm && cd cyber-expert-llm
+git clone https://github.com/Cyhelm-Vciso/LLM.git && cd LLM
 python -m venv .venv && source .venv/bin/activate
 pip install -e '.[dev]'
 pytest -q
