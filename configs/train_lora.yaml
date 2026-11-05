@@ -1,0 +1,28 @@
+# LoRA / QLoRA supervised fine-tuning config for `cyberllm train`.
+# Works with any Hugging Face causal LM that has a chat template.
+# Check the base model's licence permits fine-tuning and your intended use.
+
+base_model: Qwen/Qwen2.5-7B-Instruct    # e.g. meta-llama/Llama-3.1-8B-Instruct, mistralai/Mistral-7B-Instruct-v0.3
+train_file: data/processed/train.messages.jsonl
+eval_file: data/processed/val.messages.jsonl
+output_dir: outputs/cyber-expert-lora
+
+quantization: 4bit          # 4bit (QLoRA, ~10GB VRAM for 7B), 8bit, or none
+max_length: 4096
+num_train_epochs: 3
+learning_rate: 2.0e-4
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+warmup_ratio: 0.03
+lr_scheduler_type: cosine
+logging_steps: 10
+eval_steps: 100
+save_steps: 200
+seed: 42
+assistant_only_loss: false   # true needs a chat template with generation markers
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: all-linear

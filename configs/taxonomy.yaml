@@ -1,0 +1,110 @@
+# Topic taxonomy used to plan synthetic data generation.
+# Each persona has domains; each domain has subtopics and the frameworks that anchor it.
+# `cyberllm generate` samples persona x domain x subtopic x task_type x difficulty.
+
+task_types:
+  advisory: Give a recommendation to a decision-maker with trade-offs.
+  explain: Explain a concept accurately for the stated audience.
+  analyze: Analyse a realistic scenario, logs, or evidence and reach conclusions.
+  design: Design a programme, architecture, process, or control set.
+  write: Produce an artefact (policy, rule, runbook, report, query, config).
+  review: Critique an existing artefact and propose concrete fixes.
+  boundary: The request drifts toward clearly harmful territory; respond safely and offer the defensive alternative.
+
+difficulties: [foundational, intermediate, advanced]
+
+personas:
+  ciso:
+    governance-risk:
+      frameworks: [NIST CSF 2.0, ISO/IEC 27001:2022, NIST SP 800-30]
+      subtopics:
+        - setting and documenting cyber risk appetite
+        - building a risk register and quantifying risk (FAIR-style ranges)
+        - mapping controls to NIST CSF 2.0 Govern function
+        - third-party and supply-chain risk management
+        - exceptions and risk acceptance workflow
+    board-and-executive:
+      frameworks: [NIST CSF 2.0]
+      subtopics:
+        - quarterly board cyber report structure
+        - choosing security metrics that boards understand
+        - justifying a security budget increase
+        - explaining a major incident to the board
+        - cyber insurance renewal questions
+    regulation-compliance:
+      frameworks: [NIS2, DORA, GDPR, SEC cybersecurity disclosure rules, PCI DSS v4.0, HIPAA Security Rule]
+      subtopics:
+        - materiality assessment and disclosure decisions with counsel
+        - preparing for an ISO 27001 certification audit
+        - building a compliance calendar across overlapping regulations
+        - breach notification decision trees
+        - AI governance and acceptable use of generative AI
+    programme-and-people:
+      frameworks: [CIS Controls v8.1, NIST NICE Framework]
+      subtopics:
+        - 100-day plan for a new CISO
+        - security operating model and team structure
+        - security awareness programme that changes behaviour
+        - vendor consolidation and tool rationalisation
+        - tabletop exercise design for executives
+
+  expert:
+    threat-intelligence:
+      frameworks: [MITRE ATT&CK, Diamond Model, Pyramid of Pain]
+      subtopics:
+        - turning a threat report into prioritised detections
+        - assessing relevance of a threat actor to an organisation
+        - writing intelligence requirements
+        - confidence levels and source reliability
+    incident-response:
+      frameworks: [NIST SP 800-61r3, MITRE ATT&CK]
+      subtopics:
+        - ransomware response first 24 hours
+        - business email compromise investigation
+        - cloud account compromise scoping
+        - evidence preservation and chain of custody
+        - containment trade-offs (isolate vs observe)
+    architecture-review:
+      frameworks: [NIST SP 800-207 Zero Trust, OWASP ASVS]
+      subtopics:
+        - zero trust roadmap for a hybrid enterprise
+        - threat modelling a new SaaS product (STRIDE)
+        - segmentation strategy for OT/ICS networks
+        - securing machine identities and secrets
+    adversary-behaviour:
+      frameworks: [MITRE ATT&CK]
+      subtopics:
+        - how credential theft techniques work and how to detect them
+        - living-off-the-land binaries from a defender's view
+        - initial access trends and the controls that stop them
+        - prompt injection and attacks on LLM applications
+
+  engineer:
+    detection-engineering:
+      frameworks: [Sigma, MITRE ATT&CK, KQL, SPL]
+      subtopics:
+        - writing a Sigma rule and converting it to KQL or SPL
+        - tuning noisy detections with allow-lists
+        - detection-as-code CI pipeline
+        - testing detections with safe atomic simulations
+    cloud-security:
+      frameworks: [CIS Benchmarks, AWS Well-Architected Security Pillar]
+      subtopics:
+        - least-privilege IAM policy review
+        - preventing public storage buckets with guardrails
+        - centralised cloud logging design
+        - Kubernetes pod security and network policies
+    appsec-devsecops:
+      frameworks: [OWASP Top 10, OWASP ASVS, SLSA, NIST SSDF]
+      subtopics:
+        - fixing an injection vulnerability in code review
+        - secrets scanning and rotation in CI/CD
+        - SBOM generation and dependency risk triage
+        - securing GitHub Actions workflows
+    infrastructure-identity:
+      frameworks: [CIS Controls v8.1, Microsoft security baselines]
+      subtopics:
+        - phishing-resistant MFA rollout
+        - hardening Active Directory tiering
+        - vulnerability prioritisation with EPSS and KEV
+        - endpoint hardening baseline
